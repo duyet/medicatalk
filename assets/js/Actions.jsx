@@ -129,10 +129,10 @@ define([], function () {
           statusText: error.response.statusText
         }
       }
-    }
+    },
 
-    loginUser(email, password, redirect="/") {
-        return (dispatch) {
+    loginUser (email, password, redirect="/") {
+        return (dispatch) => {
             dispatch(loginUserRequest());
             return fetch('http://localhost:3000/auth/getToken/', {
                 method: 'post',
