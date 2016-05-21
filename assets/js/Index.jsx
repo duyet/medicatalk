@@ -13,12 +13,13 @@ requirejs.config({
       'showdown': '../bower_components/showdown/compressed/Showdown',
       'bootstrap': '../bower_components/bootstrap/dist/js/bootstrap',
       'jwt-decode': '../bower_components/jwt-decode/build/jwt-decode.min',
-      
+
       'app': '/js',
       'lib': '../bower_components'
     },
 
     shim: {
+      'react-redux': ['react'],
       'jquery.timeago': ['jquery'],
       'bootstrap': ['jquery']
     },
@@ -61,7 +62,7 @@ require.onError = function (err) {
     }
 
     let messageBlock = document.createElement('div')
-    messageBlock.innerHTML = `<div style="height: 48px;text-align:center;position: fixed;top: 0;left: 0;right: 0;background: #ff9300;width: auto;color: #fff;line-height: 48px;">${message}</div>`
+    messageBlock.innerHTML = `<div style='height: 48px;text-align:center;position: fixed;top: 0;left: 0;right: 0;background: #ff9300;width: auto;color: #fff;line-height: 48px;'>${message}</div>`
 
     document.body.appendChild(messageBlock)
     document.getElementsByClassName('loading')[0].innerHTML = ''

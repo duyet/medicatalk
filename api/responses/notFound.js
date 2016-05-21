@@ -24,7 +24,7 @@ module.exports = function notFound (data, options) {
   var res = this.res;
   var sails = req._sails;
 
-  return res.view('homepage');
+  // return res.view('homepage');
 
   // Set status code
   res.status(404);
@@ -93,4 +93,3 @@ module.exports = function notFound (data, options) {
   });
 
 };
-
