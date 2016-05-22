@@ -42,16 +42,9 @@ module.exports.routes = {
      * for configuration options and examples.                                  *
      *                                                                          *
      ***************************************************************************/
-    'get /api/login': 'AuthController.login',
-    'get /api/logout': 'AuthController.logout',
-    'get /api/register': 'AuthController.register',
-
-    'post /auth/local': 'AuthController.callback',
-    'post /auth/local/:action': 'AuthController.callback',
-
-    'get /api/auth/:provider': 'AuthController.provider',
-    'get /api/auth/:provider/callback': 'AuthController.callback',
-    'get /api/auth/:provider/:action': 'AuthController.callback',
+    '/api/auth/signup'  : 'AuthController.signup',
+    '/api/auth/signin'  : 'AuthController.signin',
+    '/api/logout'       : 'AuthController.logout',
 
     '/': {
         view: 'homepage'
