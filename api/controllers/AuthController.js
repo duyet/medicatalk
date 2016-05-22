@@ -52,4 +52,13 @@ module.exports = {
         passport.authenticate('local',
             _onPassportAuth.bind(this, req, res))(req, res);
     },
+
+    /**
+     * Sign out
+     * @param {Object} req Request object
+     * @param {Object} res Response object
+     */
+    signout: function(req, res) {
+        res.ok('logout'); 
+    },
 };

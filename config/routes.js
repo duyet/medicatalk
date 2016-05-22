@@ -44,7 +44,7 @@ module.exports.routes = {
      ***************************************************************************/
     '/api/auth/signup'  : 'AuthController.signup',
     '/api/auth/signin'  : 'AuthController.signin',
-    '/api/logout'       : 'AuthController.logout',
+    '/api/auth/signout'       : 'AuthController.logout',
 
     '/': {
         view: 'homepage'
