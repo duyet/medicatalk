@@ -20,7 +20,7 @@ function(React, ReactRouter, Rest, Store, Login, Register) {
       return (
         <div className='auth wrap'>
 
-          <Router history={browserHistory}>
+          <Router>
             <Route path='/auth/register' component={Register}></Route>
             <Route path='/auth*' component={Login}></Route>
           </Router>

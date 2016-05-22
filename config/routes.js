@@ -44,9 +44,13 @@ module.exports.routes = {
      ***************************************************************************/
     '/api/auth/signup'  : 'AuthController.signup',
     '/api/auth/signin'  : 'AuthController.signin',
-    '/api/auth/signout'       : 'AuthController.logout',
+    '/api/auth/signout'       : 'AuthController.signout',
 
-    '/': {
-        view: 'homepage'
-    }
+    // '/': {
+    //     view: 'homepage'
+    // },
+    // 'get /*': {
+    //     view: 'homepage',
+    //     skipAssets: true
+    // },
 };

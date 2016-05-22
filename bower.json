@@ -34,6 +34,7 @@
     "redux-logger": "https://npmcdn.com/redux-logger@2.6.0/dist/index.js",
     "react-router": "https://npmcdn.com/react-router/umd/ReactRouter.min.js",
     "redux-api": "^0.9.6",
-    "jwt-decode": "^2.0.1"
+    "jwt-decode": "^2.0.1",
+    "history": "https://npmcdn.com/history/umd/history.min.js"
   }
 }

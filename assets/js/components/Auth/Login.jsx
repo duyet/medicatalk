@@ -35,7 +35,7 @@ define(['react', 'react-router', '../../Actions'], function(React, ReactRouter, 
 
     render() {
       return(
-          <form className='form'>
+          <form className='form login'>
             <h4 className='form-heading'>Please sign in</h4>
             {this.props.statusText ? <div className='alert alert-info'>{this.props.statusText}</div> : ''}
             <label htmlFor='inputEmail' className='sr-only'>Email address</label>

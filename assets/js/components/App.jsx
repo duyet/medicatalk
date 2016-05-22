@@ -21,7 +21,7 @@ function (
   Auth
 ) {
   const { Component, PropTypes } = React
-  const { Router, Route, IndexRoute, browserHistory } = ReactRouter
+  const { Router, Route, IndexRoute } = ReactRouter
 
   class App extends Component {
 
@@ -30,7 +30,7 @@ function (
         <div className='wrapper-page'>
           <Header />
 
-          <Router history={browserHistory}>
+          <Router>
             <IndexRoute component={Home} />
             <Route path='/' component={Home} />
             <Route path='/explore' component={Explore} />

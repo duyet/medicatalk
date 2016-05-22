@@ -1,21 +1,22 @@
 requirejs.config({
     paths: {
-      'react': '../bower_components/react/react-with-addons',
-      'redux': '../bower_components/redux/index',
-      'react-redux': '../bower_components/react-redux/index',
-      'redux-thunk': '../bower_components/redux-thunk/index',
-      'redux-logger': '../bower_components/redux-logger/index',
-      'react-router': '../bower_components/react-router/index',
-      'redux-api': '../bower_components/redux-api/dist/redux-api.min',
-      'reactdom': '../bower_components/react/react-dom',
-      'jquery': '../bower_components/jquery/dist/jquery',
-      'jquery.timeago': '../bower_components/jquery-timeago/jquery.timeago',
-      'showdown': '../bower_components/showdown/compressed/Showdown',
-      'bootstrap': '../bower_components/bootstrap/dist/js/bootstrap',
-      'jwt-decode': '../bower_components/jwt-decode/build/jwt-decode.min',
+      'react': '../lib/react/react-with-addons',
+      'redux': '../lib/redux/index',
+      'react-redux': '../lib/react-redux/index',
+      'redux-thunk': '../lib/redux-thunk/index',
+      'redux-logger': '../lib/redux-logger/index',
+      'react-router': '../lib/react-router/index',
+      'redux-api': '../lib/redux-api/dist/redux-api.min',
+      'reactdom': '../lib/react/react-dom',
+      'history': '../lib/history/index',
+      'jquery': '../lib/jquery/dist/jquery',
+      'jquery.timeago': '../lib/jquery-timeago/jquery.timeago',
+      'showdown': '../lib/showdown/compressed/Showdown',
+      'bootstrap': '../lib/bootstrap/dist/js/bootstrap',
+      'jwt-decode': '../lib/jwt-decode/build/jwt-decode.min',
 
       'app': '/js',
-      'lib': '../bower_components'
+      'lib': '../lib'
     },
 
     shim: {
@@ -30,8 +31,8 @@ requirejs.config({
 require(['react', 'reactdom', 'react-redux', 'react-router', './Store', './Actions', './components/App'],
   function (React, ReactDOM, ReactRedux, ReactRouter, Store, Actions, App) {
     const { Provider } = ReactRedux
-    const { Router, Route, browserHistory } = ReactRouter
     const { TOKEN_KEY, loginUserSuccess } = Actions
+    const { Router, Route, IndexRoute } = ReactRouter
 
     let token = localStorage.getItem(TOKEN_KEY);
     if (token !== null) {
@@ -40,7 +41,7 @@ require(['react', 'reactdom', 'react-redux', 'react-router', './Store', './Actio
 
     ReactDOM.render(
       <Provider store={Store}>
-        <Router history={browserHistory}>
+        <Router>
           <Route path='*' component={App} />
         </Router>
       </Provider>,

@@ -3,12 +3,23 @@ define(['react', 'react-router', '../../Actions'], function(React, ReactRouter, 
   const { History } = ReactRouter
   const { changeForm } = Actions
 
+  class ErrorMessage extends Component {
+    render() {
+      if (!this.props.message) return <span />;
+
+      return (
+        <div className='alert alert-danger' id='danger-message'>{this.props.message}</div>
+      )
+    }
+  }
+
   class LoginForm extends Component {
     constructor(props) {
       super(props);
       // this.onChange = this.onChange.bind(this)
       const redirectRoute = this.props.location.query.next || '/auth/register';
       this.state = {
+        message: '',
         email: '',
         password: '',
         repassword: '',
@@ -17,23 +28,39 @@ define(['react', 'react-router', '../../Actions'], function(React, ReactRouter, 
       }
     }
 
-    login(e) {
+    submitForm(e) {
       e.preventDefault();
+
+      if (!this.state.email) {
+        this.setState({ message: 'Email is required!' });
+        return;
+      }
+
+      if (!this.state.password || this.state.password.length < 6) {
+        this.setState({ message: 'Password invalid!' });
+        return;
+      }
+
+      if (this.state.password != this.state.repassword) {
+        this.setState({ message: 'Password not match!' });
+        return;
+      }
+
       this.props.actions.registerUser(this.state.email, this.state.password, this.state.redirectTo);
     }
 
-    handleChangeEmail(e) {
-      this.setState({email: e.target.value});
-    }
-
-    handleChangePassword(e) {
-      this.setState({email: e.target.value});
+    handleChange(type) {
+      return (e) => {
+        this.setState({ [type]: e.target.value });
+      }
     }
 
     render() {
       return(
           <form className='form'>
             <h4 className='form-heading'>Register</h4>
+            <ErrorMessage message={this.state.message} />
+
             {this.props.statusText ? <div className='alert alert-info'>{this.props.statusText}</div> : ''}
             
             <label htmlFor='inputEmail' className='sr-only'>Email address</label>
@@ -41,7 +68,7 @@ define(['react', 'react-router', '../../Actions'], function(React, ReactRouter, 
               id='inputEmail' 
               className='form-control' 
               placeholder='Email address' 
-              onChange={this.handleChangeEmail.bind(this)}
+              onChange={this.handleChange('email').bind(this)}
               required 
               autofocus />
 
@@ -50,7 +77,7 @@ define(['react', 'react-router', '../../Actions'], function(React, ReactRouter, 
               id='inputPassword' 
               className='form-control' 
               placeholder='Password' 
-              onChange={this.handleChangePassword.bind(this)}
+              onChange={this.handleChange('password').bind(this)}
               required />
 
             <label htmlFor='inputPassword' className='sr-only'>Repeat</label>
@@ -58,14 +85,14 @@ define(['react', 'react-router', '../../Actions'], function(React, ReactRouter, 
               id='inputRePassword' 
               className='form-control' 
               placeholder='Repeat' 
-              onChange={this.handleChangePassword.bind(this)}
+              onChange={this.handleChange('repassword').bind(this)}
               required />
 
             <button  
               className='btn btn-lg btn-primary btn-block' 
               type='submit'
               disabled={this.props.isAuthenticating}
-              onClick={this.login.bind(this)}>Register</button>
+              onClick={this.submitForm.bind(this)}>Register</button>
           </form>
       );
     }
