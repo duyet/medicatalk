@@ -6,13 +6,13 @@ function(Redux, ReactRedux, Actions, Auth) {
   const mapStateToProps = (state, ownProps) => {
     return {
       isAuthenticating   : state.auth.isAuthenticating,
-      statusText         : state.auth.statusText
+      statusText         : state.auth.statusText,
     }
   }
 
   const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-      actions : bindActionCreators(Actions, dispatch)
+      actions : Actions, // bindActionCreators(Actions, dispatch)
     }
   }
 
