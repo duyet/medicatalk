@@ -1,7 +1,7 @@
 define (['jquery', 'redux', 'jwt-decode', '../Actions'], 
 function ($, Redux, jwtDecode, Actions) {
   const { SENDING_REQUEST } = Actions
-  const { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, LOGOUT_USER } = Actions
+  const { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, LOGOUT_SUCCESS } = Actions
   const { REGISTER_USER_FAILURE } = Actions
 
   const initialState = {
@@ -44,6 +44,15 @@ function ($, Redux, jwtDecode, Actions) {
                     'token': action.payload.token, //action.payload.token,
                     'user': action.payload.user || {}, // jwtDecode(action.payload.token).userName,
                     'statusText': 'You have been successfully logged in.'
+                })
+                
+             case LOGOUT_SUCCESS:
+                return Object.assign({}, state, {
+                    'isAuthenticating': false,
+                    'isAuthenticated': false,
+                    'token': false,
+                    'user': {},
+                    'statusText': 'You have been successfully logged out.'
                 })
 
             default:

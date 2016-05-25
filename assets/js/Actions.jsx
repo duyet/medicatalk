@@ -23,6 +23,7 @@ define([], function () {
   const REGISTER_USER_FAILURE = 'REGISTER_USER_FAILURE' // Login fail
   const REGISTER_USER = 'REGISTER_USER' // Register
   const LOGOUT_USER = 'LOGOUT_USER'
+  const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
 
   const RECEIVE_PROTECTED_DATA = 'RECEIVE_PROTECTED_DATA'
   const FETCH_PROTECTED_DATA_REQUEST = 'FETCH_PROTECTED_DATA_REQUEST'
@@ -44,6 +45,8 @@ define([], function () {
     REGISTER_USER,
 
     LOGOUT_USER,
+    LOGOUT_SUCCESS, 
+    
     CHANGE_FORM,
     SET_AUTH,
     SENDING_REQUEST,
@@ -229,7 +232,7 @@ define([], function () {
         localStorage.removeItem(Const.TOKEN)
         localStorage.removeItem(Const.USER)
         
-        // dispatch({ type: 'LOGOUT_SUCCESS' })
+        dispatch({ type: 'LOGOUT_SUCCESS' })
         dispatch({ type: REDIRECT_TO, to: redirect })
       }
     },

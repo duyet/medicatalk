@@ -1,5 +1,5 @@
-define(['react', 'react-router', '../../Rest', '../../Store', './Login', './Register', './LogoutSuccess'], 
-function(React, ReactRouter, Rest, Store, Login, Register, LogoutSuccess) {
+define(['react', 'react-router', '../../Rest', '../../Store', './Login', './Register', './Logout', './LogoutSuccess'], 
+function(React, ReactRouter, Rest, Store, Login, Register, Logout, LogoutSuccess) {
   const { PropTypes, Component } = React
   const { Router, Route, browserHistory, Link } = ReactRouter
 
@@ -17,6 +17,7 @@ function(React, ReactRouter, Rest, Store, Login, Register, LogoutSuccess) {
 
           <Router>
             <Route path='/auth/register' component={(props, state) => <Register {...parent_props} />}></Route>
+            <Route path='/auth/logout' component={(props, state) => <Logout {...parent_props} />}></Route>
             <Route path='/auth/logout_success' component={(props, state) => <LogoutSuccess {...parent_props} />}></Route>
             <Route path='/auth*' component={(props, state) => <Login {...parent_props} />}></Route>
           </Router>

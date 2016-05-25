@@ -21,8 +21,14 @@ requirejs.config({
 
     shim: {
       'react-redux': ['react'],
+      'react-router': ['react'],
+      'reactdom': ['react'],
       'jquery.timeago': ['jquery'],
-      'bootstrap': ['jquery']
+      'bootstrap': ['jquery'],
+      './': ['react'],
+      './Store': ['react'],
+      './Actions': ['react'],
+      './components/App': ['react'],
     },
 
     baseUrl: '/js'
@@ -55,6 +61,8 @@ require(['react', 'reactdom', 'react-redux', 'react-router', './Store', './Actio
 })
 
 require.onError = function (err) {
+    console.error(err)
+    
     let message = 'Something went wrong!'
     if (err.requireType === 'timeout') {
        message = 'Loading timeout, please refresh your webpage.'
@@ -64,6 +72,7 @@ require.onError = function (err) {
     messageBlock.innerHTML = `<div style='height: 48px;text-align:center;position: fixed;top: 0;left: 0;right: 0;background: #ff9300;width: auto;color: #fff;line-height: 48px;'>${message}</div>`
 
     document.body.appendChild(messageBlock)
+    
     var loading = document.getElementsByClassName('loading')[0]
     if (loading) loading.innerHTML = ''
 

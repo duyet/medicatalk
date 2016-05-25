@@ -4,12 +4,13 @@ function(React, ReactRouter, Actions) {
   const { Link } = ReactRouter
 
   class LogoutSuccess extends Component {
+    componentDidMount() {
+        this.props.actions.doLogout('/auth/logout_success')
+    }
+    
     render() {
       return (
-        <div className='row text-center'>
-            Logout successfully! <br /><br />
-            <Link to='/'>Go to homepage</Link>
-        </div>
+        <span />
       )
     }
   }
