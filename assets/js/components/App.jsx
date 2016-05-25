@@ -10,7 +10,8 @@ define([
   '../containers/Explore',
   '../containers/Topics',
   '../containers/Auth',
-  '../containers/Profile'
+  '../containers/Profile',
+  '../containers/Pages',
 ],
 function (
   React,
@@ -24,7 +25,8 @@ function (
   Explore,
   Topics,
   Auth,
-  Profile
+  Profile,
+  Pages
 ) {
   const { Component, PropTypes } = React
   const { Provider } = ReactRedux
@@ -42,9 +44,10 @@ function (
               <IndexRoute component={Home} />
               <Route path='/' component={Home} />
               <Route path='/explore' component={Explore} />
-              <Route path='/topics' component={Topics} />
-              <Route path='/profile*' component={Profile} />
+              <Route path='/topics*' component={Topics} />
               <Route path='/auth*' component={Auth} />
+              <Route path='/profile*' component={Profile} />
+              <Route path='/pages*' component={Pages} />
               <Route path='*' component={NotFound} />
             </Router>
           </Provider>

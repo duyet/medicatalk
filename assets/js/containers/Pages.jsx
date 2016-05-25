@@ -1,4 +1,5 @@
-define(['react-redux', 'redux', 'Actions', '../components/Topics/Index'], function(ReactRedux, Redux, Actions, Topics) {
+define(['redux', 'react-redux', 'Actions', '../components/Pages/Index'], 
+function(Redux, ReactRedux, Actions, Pages) {
   const { connect } = ReactRedux
   const { bindActionCreators } = Redux
 
@@ -12,10 +13,8 @@ define(['react-redux', 'redux', 'Actions', '../components/Topics/Index'], functi
     }
   }
 
-  const Container = connect(
+  return connect(
     mapStateToProps,
     mapDispatchToProps
-  )(Topics)
-
-  return Container
+  )(Pages)
 })

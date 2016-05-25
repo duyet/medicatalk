@@ -9,6 +9,8 @@ requirejs.config({
       'redux-api': '../lib/redux-api/dist/redux-api.min',
       'reactdom': '../lib/react/react-dom',
       'history': '../lib/history/index',
+      'draft': '../lib/Draft/index',
+      'immutable': '../lib/immutable/index',
       'jquery': '../lib/jquery/dist/jquery',
       'jquery.timeago': '../lib/jquery-timeago/jquery.timeago',
       'showdown': '../lib/showdown/compressed/Showdown',
@@ -24,6 +26,8 @@ requirejs.config({
     shim: {
       'react-redux': ['react'],
       'react-router': ['react'],
+      'draft': ['immutable'],
+      'Immutable': { exports: 'Immutable' },
       'reactdom': ['react'],
       'jquery.timeago': ['jquery'],
       'bootstrap': ['jquery'],
