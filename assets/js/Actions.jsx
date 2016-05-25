@@ -79,11 +79,29 @@ define([], function () {
       localStorage.setItem(TOKEN_KEY, token);
       return {
         type: LOGIN_USER_SUCCESS,
-        payload: {
-          token: token
-        }
+        token
       }
     },
+    
+    /**
+     * Set state login success from access_token
+     * @param  {string}          User token
+     * @return {object}          Formatted action for the reducer to handle
+     */
+    intialAuthStatus() {
+      let token = localStorage.getItem(TOKEN_KEY)
+      let name = localStorage.getItem('name')
+      if (token !== null && name !== '' && token !== '') {
+        return {
+          type: LOGIN_USER_SUCCESS,
+          payload: {
+            token,
+            name
+          }
+        } 
+      }
+    },
+    
 
     /**
      * Set state login failure, and remove token to localStoreage
@@ -147,7 +165,7 @@ define([], function () {
      * @param  {string}   username The username of the user
      * @param  {string}   password The password of the user
      */
-    register (email, username, password) {
+    doRegister (email, username, password, cb = () => {}) {
         return (dispatch) => {
           dispatch({ type: SENDING_REQUEST })
 
@@ -156,16 +174,19 @@ define([], function () {
             url: window._medica.api + '/auth/signup', 
             data: { email, username, password }
           }).done(response => {
-              console.log('register success!!');
               dispatch({ type: LOGIN_USER_SUCCESS, payload: response.data })
+              cb({ type: LOGIN_USER_SUCCESS, payload: response.data })
           }).fail((xhr, response) => {
-              console.log('register fail!!', xhr ,response);
               dispatch({ type: REGISTER_USER_FAILURE, payload: xhr.responseJSON })
+              cb({ type: REGISTER_USER_FAILURE, payload: xhr.responseJSON })
           })
         }
     },
 
     registerSuccess(data) {
+      console.log('registerSuccess', data)
+      
+      
       localStorage.setItem(TOKEN_KEY, data.token);
       localStorage.setItem('user_info', data.user);
       return {
@@ -174,8 +195,6 @@ define([], function () {
           token: data.token
         }
       }
-    },
-
-
+    }
   }
 })

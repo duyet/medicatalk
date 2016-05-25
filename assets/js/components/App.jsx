@@ -1,6 +1,8 @@
 define([
   'react',
+  'react-redux',
   'react-router',
+  '../Store',
   '../containers/Header',
   './Footer',
   './NotFound',
@@ -11,7 +13,9 @@ define([
 ],
 function (
   React,
+  ReactRedux,
   ReactRouter,
+  Store,
   Header,
   Footer,
   NotFound,
@@ -21,6 +25,7 @@ function (
   Auth
 ) {
   const { Component, PropTypes } = React
+  const { Provider } = ReactRedux
   const { Router, Route, IndexRoute } = ReactRouter
 
   class App extends Component {
@@ -29,15 +34,17 @@ function (
       return (
         <div className='wrapper-page'>
           <Header />
-
-          <Router>
-            <IndexRoute component={Home} />
-            <Route path='/' component={Home} />
-            <Route path='/explore' component={Explore} />
-            <Route path='/topics' component={Topics} />
-            <Route path='/auth*' component={Auth} />
-            <Route path='*' component={NotFound} />
-          </Router>
+          
+          <Provider store={this.props.store}>
+            <Router>
+              <IndexRoute component={Home} />
+              <Route path='/' component={Home} />
+              <Route path='/explore' component={Explore} />
+              <Route path='/topics' component={Topics} />
+              <Route path='/auth*' component={Auth} />
+              <Route path='*' component={NotFound} />
+            </Router>
+          </Provider>
 
           <Footer />
         </div>

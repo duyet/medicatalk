@@ -31,18 +31,16 @@ requirejs.config({
 require(['react', 'reactdom', 'react-redux', 'react-router', './Store', './Actions', './components/App'],
   function (React, ReactDOM, ReactRedux, ReactRouter, Store, Actions, App) {
     const { Provider } = ReactRedux
-    const { TOKEN_KEY, loginUserSuccess } = Actions
+    const { intialAuthStatus } = Actions
     const { Router, Route, IndexRoute } = ReactRouter
 
-    let token = localStorage.getItem(TOKEN_KEY);
-    if (token !== null) {
-      store.dispatch(loginUserSuccess(token));
-    }
-
+    // Authenticate status 
+    Store.dispatch(intialAuthStatus());
+    
     ReactDOM.render(
       <Provider store={Store}>
         <Router>
-          <Route path='*' component={App} />
+          <Route path='*' component={(state, props) => <App {...props} store={Store} />} />
         </Router>
       </Provider>,
       document.getElementById('main')

@@ -1,40 +1,48 @@
-define (['jquery', 'redux', 'jwt-decode', '../Actions', '../utils/createReducer'], 
-function ($, Redux, jwtDecode, Actions, createReducer) {
+define (['jquery', 'redux', 'jwt-decode', '../Actions'], 
+function ($, Redux, jwtDecode, Actions) {
   const { SENDING_REQUEST } = Actions
   const { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, LOGOUT_USER } = Actions
   const { REGISTER_USER_FAILURE } = Actions
 
   const initialState = {
-    auth: {
-        token: null,
-        userName: null,
-        isSending: false,
-        isAuthenticated: false,
-        isAuthenticating: false,
-        statusText: ''
-    }
+    token: null,
+    userName: null,
+    isSending: false,
+    isAuthenticated: false,
+    isAuthenticating: false,
+    statusText: ''
   }
 
-    const auth = (state = initialState, action)  => {
+    return (state = initialState, action)  => {
         switch (action.type) {
             case SENDING_REQUEST:
-                return [
-                    ...state, { 'isSending': true }
-                ]
+                return Object.assign({}, state, {
+                    'isSending': true
+                })
 
             case REGISTER_USER_FAILURE:
+                alert('state register fail!')
                 return Object.assign({}, state, {
                     'isRegistered': false,
                     'isSending': false,
                     'token': null,
                     'statusText': `Register error!`
                 })
+                
+             case LOGIN_USER_SUCCESS:
+                return Object.assign({}, state, {
+                    'isAuthenticating': false,
+                    'isAuthenticated': true,
+                    'isSending': false,
+                    'token': action.payload.token, //action.payload.token,
+                    'userName': action.payload.name, // jwtDecode(action.payload.token).userName,
+                    'statusText': 'You have been successfully logged in.'
+                })
+
             default:
-                //  return state
+                return state
             }
     }
-
-    return auth;
 
   // return createReducer(initialState, {
   //   [LOGIN_USER_REQUEST]: (state, payload) => {

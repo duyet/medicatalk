@@ -12,7 +12,10 @@ function(Redux, ReactRedux, Actions, Auth) {
 
   const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-      actions : bindActionCreators(Actions, dispatch)
+      actions : bindActionCreators(Actions, dispatch),
+      doRegister:  (email, username = '', password, cb = () => {}) => {
+        dispatch(Actions.doRegister(email, username, password, cb))
+      },
     }
   }
 

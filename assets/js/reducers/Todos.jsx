@@ -3,7 +3,7 @@
 define(['redux', '../Actions'], function (Redux, Actions) {
 	const { ADD_TODO, COMPLETE_TODO, TOGGLE_TODO, VisibilityFilters } = Actions
 
-	function todos (state = [], action) {
+	function todos (state, action) {
 	  switch (action.type) {
 	    case ADD_TODO:
 	      return [

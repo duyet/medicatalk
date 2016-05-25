@@ -1,4 +1,4 @@
-define(['react', 'react-router', '../../Actions'], function(React, ReactRouter, Actions) {
+define(['react', 'react-router', '../../Actions', '../../utils/ErrorParser'], function(React, ReactRouter, Actions, ErrorParser) {
   const { PropTypes, Component } = React
   const { History } = ReactRouter
   const { changeForm, register } = Actions
@@ -6,9 +6,13 @@ define(['react', 'react-router', '../../Actions'], function(React, ReactRouter, 
   class ErrorMessage extends Component {
     render() {
       if (!this.props.message) return <span />;
-
+      let message = ''
+      
+      if (typeof this.props.message != 'array') message = '' + this.props.message
+      else message = this.props.message[0]
+      
       return (
-        <div className='alert alert-danger' id='danger-message'>{this.props.message}</div>
+        <div className='alert alert-danger' id='danger-message'>{message}</div>
       )
     }
   }
@@ -16,9 +20,7 @@ define(['react', 'react-router', '../../Actions'], function(React, ReactRouter, 
   class RegisterForm extends Component {
     constructor(props) {
       super(props)
-
-      console.log('props', props)
-
+      
       // this.onChange = this.onChange.bind(this)
       const redirectRoute = this.props.location.query.next || '/auth/register';
       this.state = {
@@ -47,21 +49,30 @@ define(['react', 'react-router', '../../Actions'], function(React, ReactRouter, 
       }
 
       if (!this.state.password || this.state.password.length < 6) {
-        this.setState({ message: 'Password invalid!' });
+        this.setState({ message: 'Password invalid!' })
         return;
       }
 
       if (this.state.password != this.state.repassword) {
-        this.setState({ message: 'Password not match!' });
+        this.setState({ message: 'Password not match!' })
         return;
       }
+      
+      console.log(this, 'this')
 
-      Actions.register(this.state.email, this.state.password, this.state.redirectTo);
+      this.props.doRegister(this.state.email, this.state.username, this.state.password, (response) => {
+        if (response.type == 'LOGIN_USER_SUCCESS') {
+          this.props.actions.registerSuccess(response.data)
+          
+        } else {
+          this.setState({ message: ErrorParser(response.payload) })
+        }
+      })
     }
 
     handleChange(type) {
       return (e) => {
-        this.setState({ [type]: e.target.value });
+        this.setState({ [type]: e.target.value })
       }
     }
 
@@ -118,7 +129,7 @@ define(['react', 'react-router', '../../Actions'], function(React, ReactRouter, 
   }
 
   RegisterForm.propTypes = {
-    // onSubmit: React.PropTypes.func.isRequired,
+    // submitForm: React.PropTypes.func.isRequired,
     // data: React.PropTypes.object.isRequired
   }
 
