@@ -10,11 +10,13 @@ define([], function () {
   // some benefits to explicitly declaring constants in
   // larger codebases.
 
+  // Default, Utils 
+  const REDIRECT_TO = 'REDIRECT_TO' 
+
   // Auth 
   const CHANGE_FORM = 'CHANGE_FORM'
   const SET_AUTH = 'SET_AUTH'
   const SENDING_REQUEST = 'SENDING_REQUEST'
-  const TOKEN_KEY = 'TOKEN'
   const LOGIN_USER_REQUEST = 'LOGIN_USER_REQUEST'
   const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS' // Login success
   const LOGIN_USER_FAILURE = 'LOGIN_USER_FAILURE' // Login fail
@@ -25,9 +27,15 @@ define([], function () {
   const RECEIVE_PROTECTED_DATA = 'RECEIVE_PROTECTED_DATA'
   const FETCH_PROTECTED_DATA_REQUEST = 'FETCH_PROTECTED_DATA_REQUEST'
 
-  return {
+  const Const = {
+    TOKEN: '__access_token',
+    USER: '__user_info'
+  }
 
-    TOKEN_KEY,
+  return {
+    Const,
+    REDIRECT_TO,
+    
     LOGIN_USER_REQUEST,
     LOGIN_USER_SUCCESS,
     LOGIN_USER_FAILURE,
@@ -71,15 +79,26 @@ define([], function () {
     }, 
 
     /**
+     * Sets the requestSending state, which displays a loading indicator during requests
+     * @param  {boolean} sending The new state the app should have
+     * @return {object}          Formatted action for the reducer to handle
+     */
+    redirect (to = '/') {
+      return { type: REDIRECT_TO, to };
+    }, 
+
+    /**
      * Set state login success, and set token to localStoreage
      * @param  {string}          User token
      * @return {object}          Formatted action for the reducer to handle
      */
-    loginUserSuccess(token) {
-      localStorage.setItem(TOKEN_KEY, token);
+    loginUserSuccess(payload) {
+      localStorage.setItem(Actions.Const.TOKEN, payload.token);
+      localStorage.setItem(Actions.Const.USER, JSON.stringify(payload.user));
+     
       return {
         type: LOGIN_USER_SUCCESS,
-        token
+        payload
       }
     },
     
@@ -89,19 +108,35 @@ define([], function () {
      * @return {object}          Formatted action for the reducer to handle
      */
     intialAuthStatus() {
-      let token = localStorage.getItem(TOKEN_KEY)
-      let name = localStorage.getItem('name')
-      if (token !== null && name !== '' && token !== '') {
-        return {
-          type: LOGIN_USER_SUCCESS,
-          payload: {
-            token,
-            name
-          }
-        } 
+      return dispatch => {
+        let token = localStorage.getItem(Const.TOKEN)
+        let user = localStorage.getItem(Const.USER)
+        
+        try {
+          user = JSON.parse(user);
+        } catch (e) {
+          console.error('Parse user from localStorage: ', e)
+          user = {}
+        }
+        
+        if (token !== null && user !== null && token !== '') {
+          dispatch({
+            type: LOGIN_USER_SUCCESS,
+            payload: { token, user }
+          })
+          
+          // dispatch({
+          //   type: REDIRECT_TO,
+          //   to: '/'
+          // })
+          
+        } else {
+          dispatch({
+            type: 'NOT_AUTHENTICATED'
+          }) 
+        }
       }
     },
-    
 
     /**
      * Set state login failure, and remove token to localStoreage
@@ -119,36 +154,27 @@ define([], function () {
       }
     },
 
-    loginUser (email, password, redirect="/") {
+    doLogin (email, password, redirectTo='/', cb = () => {}) {
         return (dispatch) => {
-            return fetch('http://localhost:3000/auth/getToken/', {
-                method: 'post',
-                credentials: 'include',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                    body: JSON.stringify({email: email, password: password})
-                })
-                .then(checkHttpStatus)
-                .then(parseJSON)
-                .then(response => {
-                    try {
-                        let decoded = jwtDecode(response.token);
-                        dispatch(loginUserSuccess(response.token));
-                        dispatch(pushState(null, redirect));
-                    } catch (e) {
-                        dispatch(loginUserFailure({
-                            response: {
-                                status: 403,
-                                statusText: 'Invalid token'
-                            }
-                        }));
-                    }
-                })
-                .catch(error => {
-                    dispatch(loginUserFailure(error));
-                })
+          dispatch({ type: SENDING_REQUEST })
+
+          $.ajax({
+            type: 'POST',
+            url: window._medica.api + '/auth/signin', 
+            data: { email, password }
+          }).done(response => {
+              // TODO: Call dispatch => loginUserSuccess()
+              
+              localStorage.setItem(Const.TOKEN, response.data.token);
+              localStorage.setItem(Const.USER, JSON.stringify(response.data.user));
+              dispatch({ type: LOGIN_USER_SUCCESS, payload: response.data })
+              dispatch({ type: REDIRECT_TO, to: redirectTo })
+     
+              // cb({ type: LOGIN_USER_SUCCESS, payload: response.data })
+          }).fail((xhr, response) => {
+              dispatch({ type: LOGIN_USER_FAILURE, payload: xhr.responseJSON })
+              cb({ type: 'LOGIN_USER_FAILURE', payload: xhr.responseJSON })
+          })
         }
     },
 
@@ -174,8 +200,13 @@ define([], function () {
             url: window._medica.api + '/auth/signup', 
             data: { email, username, password }
           }).done(response => {
+              // TODO: Call dispatch => loginUserSuccess()
+              
+              localStorage.setItem(Const.TOKEN, response.data.token);
+              localStorage.setItem(Const.USER, JSON.stringify(response.data.user));
               dispatch({ type: LOGIN_USER_SUCCESS, payload: response.data })
-              cb({ type: LOGIN_USER_SUCCESS, payload: response.data })
+              
+              // cb({ type: LOGIN_USER_SUCCESS, payload: response.data })
           }).fail((xhr, response) => {
               dispatch({ type: REGISTER_USER_FAILURE, payload: xhr.responseJSON })
               cb({ type: REGISTER_USER_FAILURE, payload: xhr.responseJSON })
@@ -184,17 +215,27 @@ define([], function () {
     },
 
     registerSuccess(data) {
-      console.log('registerSuccess', data)
-      
-      
-      localStorage.setItem(TOKEN_KEY, data.token);
-      localStorage.setItem('user_info', data.user);
       return {
         type: LOGIN_USER_SUCCESS,
         payload: {
           token: data.token
         }
       }
+    },
+    
+    doLogout(redirect = '/') {
+      return (dispatch) => {
+        // Remove localStorage
+        localStorage.removeItem(Const.TOKEN)
+        localStorage.removeItem(Const.USER)
+        
+        // dispatch({ type: 'LOGOUT_SUCCESS' })
+        dispatch({ type: REDIRECT_TO, to: redirect })
+      }
+    },
+    
+    default() {
+      
     }
   }
 })

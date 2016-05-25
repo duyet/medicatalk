@@ -64,7 +64,8 @@ require.onError = function (err) {
     messageBlock.innerHTML = `<div style='height: 48px;text-align:center;position: fixed;top: 0;left: 0;right: 0;background: #ff9300;width: auto;color: #fff;line-height: 48px;'>${message}</div>`
 
     document.body.appendChild(messageBlock)
-    document.getElementsByClassName('loading')[0].innerHTML = ''
+    var loading = document.getElementsByClassName('loading')[0]
+    if (loading) loading.innerHTML = ''
 
     throw err
 };

@@ -1,23 +1,15 @@
-define(['react', 'react-router', '../../Actions'], function(React, ReactRouter, Actions) {
+define(['react', 'react-router', './AuthMessage', '../../Actions', '../../utils/ErrorParser'], 
+function(React, ReactRouter, AuthMessage, Actions, ErrorParser) {
   const { PropTypes, Component } = React
   const { History } = ReactRouter
   const { changeForm, register } = Actions
 
-  class ErrorMessage extends Component {
-    render() {
-      if (!this.props.message) return <span />;
-
-      return (
-        <div className='alert alert-danger' id='danger-message'>{this.props.message}</div>
-      )
-    }
-  }
-
   class LoginForm extends Component {
     constructor(props) {
       super(props);
-      // this.onChange = this.onChange.bind(this)
-      const redirectRoute = this.props.location.query.next || '/auth/login';
+
+      const redirectRoute = this.props.location.query.next || '/'
+      
       this.state = {
         email: '',
         password: '',
@@ -39,7 +31,15 @@ define(['react', 'react-router', '../../Actions'], function(React, ReactRouter, 
         return;
       }
 
-      this.props.actions.loginUser(this.state.email, this.state.password, this.state.redirectTo);
+      this.props.actions.doLogin(this.state.email, this.state.password, this.state.redirectTo, (response) => {
+        this.setState({ message: null });
+        
+        if (response.type == 'LOGIN_USER_SUCCESS') {
+          
+        } else {
+          this.setState({ message: ErrorParser(response.payload) })
+        }
+      });
     }
 
     handleChange(type) {
@@ -52,7 +52,7 @@ define(['react', 'react-router', '../../Actions'], function(React, ReactRouter, 
       return(
           <form className='form login'>
             <h4 className='form-heading'>Please sign in</h4>
-            <ErrorMessage message={this.state.message} />
+            <AuthMessage message={this.state.message} />
 
             {this.props.statusText ? <div className='alert alert-info'>{this.props.statusText}</div> : ''}
             
@@ -87,11 +87,6 @@ define(['react', 'react-router', '../../Actions'], function(React, ReactRouter, 
       );
     }
   }
-
-  LoginForm.propTypes = {
-    // onSubmit: React.PropTypes.func.isRequired,
-    // data: React.PropTypes.object.isRequired
-  }
-
-return LoginForm
+  
+  return LoginForm
 })

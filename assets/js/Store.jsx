@@ -8,8 +8,8 @@
 
 // See: http://redux.js.org/docs/basics/Store.html
 
-define(['redux', 'redux-thunk', 'redux-logger', './reducers/Index', './reducers/InitialState' ],
-function (Redux, thunkMiddleware, loggerMiddleware, Reducers, InitialState) {
+define(['redux', 'redux-thunk', 'redux-logger', './reducers/Index' ],
+function (Redux, thunkMiddleware, loggerMiddleware, Reducers) {
   const { createStore, applyMiddleware, combineReducers } = Redux
 
   const crashReporter = store => next => action => {
@@ -23,12 +23,6 @@ function (Redux, thunkMiddleware, loggerMiddleware, Reducers, InitialState) {
   }
 
   const logger = loggerMiddleware()
-
-  // let store = createStore(
-  //   combineReducers(Reducers),
-  //   InitialState,
-  //   applyMiddleware(logger, thunkMiddleware.default, crashReporter)
-  // )
   let store =  applyMiddleware(logger, thunkMiddleware.default, crashReporter)(createStore)(Reducers);
 
   return store

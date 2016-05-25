@@ -1,21 +1,8 @@
-define(['react', 'react-router', '../../Actions', '../../utils/ErrorParser'], function(React, ReactRouter, Actions, ErrorParser) {
+define(['react', 'react-router', '../../Actions', './AuthMessage', '../../utils/ErrorParser'], 
+function(React, ReactRouter, Actions, AuthMessage, ErrorParser) {
   const { PropTypes, Component } = React
   const { History } = ReactRouter
   const { changeForm, register } = Actions
-
-  class ErrorMessage extends Component {
-    render() {
-      if (!this.props.message) return <span />;
-      let message = ''
-      
-      if (typeof this.props.message != 'array') message = '' + this.props.message
-      else message = this.props.message[0]
-      
-      return (
-        <div className='alert alert-danger' id='danger-message'>{message}</div>
-      )
-    }
-  }
 
   class RegisterForm extends Component {
     constructor(props) {
@@ -57,12 +44,11 @@ define(['react', 'react-router', '../../Actions', '../../utils/ErrorParser'], fu
         this.setState({ message: 'Password not match!' })
         return;
       }
-      
-      console.log(this, 'this')
 
-      this.props.doRegister(this.state.email, this.state.username, this.state.password, (response) => {
+      this.props.actions.doRegister(this.state.email, this.state.username, this.state.password, (response) => {
+        this.setState({ message: null });
+        
         if (response.type == 'LOGIN_USER_SUCCESS') {
-          this.props.actions.registerSuccess(response.data)
           
         } else {
           this.setState({ message: ErrorParser(response.payload) })
@@ -80,7 +66,7 @@ define(['react', 'react-router', '../../Actions', '../../utils/ErrorParser'], fu
       return(
           <form className='form'>
             <h4 className='form-heading'>Register</h4>
-            <ErrorMessage message={this.state.message} />
+            <AuthMessage message={this.state.message} />
 
             {this.props.statusText ? <div className='alert alert-info'>{this.props.statusText}</div> : ''}
             

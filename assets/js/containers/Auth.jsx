@@ -4,10 +4,7 @@ function(Redux, ReactRedux, Actions, Auth) {
   const { bindActionCreators } = Redux
 
   const mapStateToProps = (state, ownProps) => {
-    return {
-      isAuthenticating   : !!state.auth && !!state.auth.isAuthenticating,
-      statusText         : !!state.auth && !!state.auth.statusText,
-    }
+    return state
   }
 
   const mapDispatchToProps = (dispatch, ownProps) => {

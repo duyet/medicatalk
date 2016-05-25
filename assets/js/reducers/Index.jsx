@@ -1,8 +1,8 @@
-define(['redux', './Todos', './Data', './Auth'], function (Redux, Todos, Data, Auth) {
+define(['redux', './Default', './Data', './Auth'], function (Redux, Default, Data, Auth) {
   const { combineReducers } = Redux
 
   const Reducers = combineReducers({
-    // Todos,
+    Default,
     Data,
     Auth
   })

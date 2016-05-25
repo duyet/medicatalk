@@ -2,10 +2,13 @@ define([], function () {
 	return (payload, html = true) => {
 		let message = []
         const default_message = 'something went wrong'
-        // if (!payload.data) return payload.message || default_message
+        
+        console.log('parse = ', payload)
+        
+        if (!payload.data || !payload.data.length) return payload.message || default_message
         
         const data = payload.data
-        // if (!data.invalidAttributes) return data.summary || default_message
+        if (!data.invalidAttributes) return data.summary || default_message
         
         for (let i in data.invalidAttributes) {
             let attr = data.invalidAttributes[i]
