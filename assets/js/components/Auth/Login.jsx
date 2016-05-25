@@ -1,7 +1,7 @@
 define(['react', 'react-router', '../../Actions'], function(React, ReactRouter, Actions) {
   const { PropTypes, Component } = React
   const { History } = ReactRouter
-  const { changeForm } = Actions
+  const { changeForm, register } = Actions
 
   class ErrorMessage extends Component {
     render() {

@@ -24,18 +24,15 @@ function (Redux, thunkMiddleware, loggerMiddleware, Rest, Reducers, Actions) {
 
   const logger = loggerMiddleware()
   const initState = {
-    auth: { isAuthenticated: false }
+    auth: { isAuthenticated: false },
+    api: '/api/v1'
   };
 
   let store = createStore(
-    combineReducers(Reducers, Rest.reducers),
-    initState,
+    combineReducers(Reducers),
+    // initState,
     applyMiddleware(logger, thunkMiddleware.default, crashReporter)
   )
-
-  // let unsubscribe = store.subscribe(() =>
-  //   console.log(store.getState())
-  // )
 
   return store
 })

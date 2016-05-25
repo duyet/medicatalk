@@ -6,7 +6,7 @@ define(['react-redux', '../Actions', '../components/Header'], function(ReactRedu
     return {
       title: 'Medica Talk',
       logoText: '[m]',
-      isAuthenticated: state.auth.isAuthenticated
+      isAuthenticated: (!!state.auth && !!state.auth.isAuthenticated)
     }
   }
 

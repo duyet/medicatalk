@@ -2,7 +2,7 @@ define(['redux', './Todos', './Data', './Auth'], function (Redux, Todos, Data, A
   const { combineReducers } = Redux
 
   const Reducers = combineReducers({
-    Todos,
+    // Todos,
     Data,
     Auth
   })

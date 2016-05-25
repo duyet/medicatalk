@@ -8,27 +8,19 @@ function(React, ReactRouter, Rest, Store, Login, Register) {
 
     }
 
-    _login(username, password) {
-      console.log('ok login')
-    }
-
-    _register(username, password) {
-      console.log('ok login')
-    }
-
     render() {
+      const parent_props = this.props
       return (
         <div className='auth wrap'>
 
           <Router>
-            <Route path='/auth/register' component={Register}></Route>
-            <Route path='/auth*' component={Login}></Route>
+            <Route path='/auth/register' component={(props, state) => <Register {...parent_props} />}></Route>
+            <Route path='/auth*' component={(props, state) => <Login {...parent_props} />}></Route>
           </Router>
 
           <div className='row text-center' style={{ marginTop: 60 }}>
             <Link to='/auth/login'>Login</Link> or <Link to='/auth/register'>Register</Link> 
           </div>
-
           
         </div>
 

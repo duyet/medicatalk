@@ -1,7 +1,7 @@
 define(['react', 'react-router', '../../Actions'], function(React, ReactRouter, Actions) {
   const { PropTypes, Component } = React
   const { History } = ReactRouter
-  const { changeForm } = Actions
+  const { changeForm, register } = Actions
 
   class ErrorMessage extends Component {
     render() {
@@ -13,23 +13,33 @@ define(['react', 'react-router', '../../Actions'], function(React, ReactRouter, 
     }
   }
 
-  class LoginForm extends Component {
+  class RegisterForm extends Component {
     constructor(props) {
-      super(props);
+      super(props)
+
+      console.log('props', props)
+
       // this.onChange = this.onChange.bind(this)
       const redirectRoute = this.props.location.query.next || '/auth/register';
       this.state = {
         message: '',
+        username: '',
         email: '',
         password: '',
         repassword: '',
         remember: true,
-        redirectTo: redirectRoute
+        redirectTo: redirectRoute,
+        isSending: false
       }
     }
 
     submitForm(e) {
       e.preventDefault();
+
+      if (!this.state.username) {
+        this.setState({ message: 'Username is required!' });
+        return;
+      }
 
       if (!this.state.email) {
         this.setState({ message: 'Email is required!' });
@@ -46,7 +56,7 @@ define(['react', 'react-router', '../../Actions'], function(React, ReactRouter, 
         return;
       }
 
-      this.props.actions.registerUser(this.state.email, this.state.password, this.state.redirectTo);
+      Actions.register(this.state.email, this.state.password, this.state.redirectTo);
     }
 
     handleChange(type) {
@@ -63,6 +73,15 @@ define(['react', 'react-router', '../../Actions'], function(React, ReactRouter, 
 
             {this.props.statusText ? <div className='alert alert-info'>{this.props.statusText}</div> : ''}
             
+            <label htmlFor='inputEmail' className='sr-only'>Email address</label>
+            <input type='text' 
+              id='inputUsername' 
+              className='form-control' 
+              placeholder='Username' 
+              onChange={this.handleChange('username').bind(this)}
+              required 
+              autofocus />
+
             <label htmlFor='inputEmail' className='sr-only'>Email address</label>
             <input type='email' 
               id='inputEmail' 
@@ -98,10 +117,10 @@ define(['react', 'react-router', '../../Actions'], function(React, ReactRouter, 
     }
   }
 
-  LoginForm.propTypes = {
+  RegisterForm.propTypes = {
     // onSubmit: React.PropTypes.func.isRequired,
     // data: React.PropTypes.object.isRequired
   }
 
-return LoginForm
+return RegisterForm
 })

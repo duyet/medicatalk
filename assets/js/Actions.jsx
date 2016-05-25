@@ -10,25 +10,6 @@ define([], function () {
   // some benefits to explicitly declaring constants in
   // larger codebases.
 
-  const ADD_TODO = 'ADD_TODO'
-  const COMPLETE_TODO = 'COMPLETE_TODO'
-  const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER'
-  const TOGGLE_TODO = 'TOGGLE_TODO'
-  const VisibilityFilters = {
-    SHOW_ALL: 'SHOW_ALL',
-    SHOW_COMPLETED: 'SHOW_COMPLETED',
-    SHOW_ACTIVE: 'SHOW_ACTIVE'
-  }
-  
-  let nextTodoId = 0
-  const addTodo = (text) => {
-    return {
-      type: ADD_TODO,
-      id: nextTodoId++,
-      text
-    }
-  }
-
   // Auth 
   const CHANGE_FORM = 'CHANGE_FORM'
   const SET_AUTH = 'SET_AUTH'
@@ -37,34 +18,23 @@ define([], function () {
   const LOGIN_USER_REQUEST = 'LOGIN_USER_REQUEST'
   const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS' // Login success
   const LOGIN_USER_FAILURE = 'LOGIN_USER_FAILURE' // Login fail
+  const REGISTER_USER_FAILURE = 'REGISTER_USER_FAILURE' // Login fail
+  const REGISTER_USER = 'REGISTER_USER' // Register
   const LOGOUT_USER = 'LOGOUT_USER'
-
 
   const RECEIVE_PROTECTED_DATA = 'RECEIVE_PROTECTED_DATA'
   const FETCH_PROTECTED_DATA_REQUEST = 'FETCH_PROTECTED_DATA_REQUEST'
 
   return {
-    // Sample todoapp
-    ADD_TODO,
-    COMPLETE_TODO,
-    SET_VISIBILITY_FILTER,
-
-    VisibilityFilters,
-    addTodo,
-    completeTodo (index) {
-      return { type: COMPLETE_TODO, index }
-    },
-    setVisibilityFilter (filter) {
-      return { type: SET_VISIBILITY_FILTER, filter }
-    },
-    toggleTodo (id) {
-      return { type: TOGGLE_TODO, id }
-    },
 
     TOKEN_KEY,
     LOGIN_USER_REQUEST,
     LOGIN_USER_SUCCESS,
     LOGIN_USER_FAILURE,
+    REGISTER_USER_FAILURE,
+
+    REGISTER_USER,
+
     LOGOUT_USER,
     CHANGE_FORM,
     SET_AUTH,
@@ -96,8 +66,8 @@ define([], function () {
      * @param  {boolean} sending The new state the app should have
      * @return {object}          Formatted action for the reducer to handle
      */
-    sendingRequest(sending) {
-      return { type: SENDING_REQUEST, sending };
+    sendingRequest() {
+      return { type: SENDING_REQUEST };
     }, 
 
     /**
@@ -133,7 +103,6 @@ define([], function () {
 
     loginUser (email, password, redirect="/") {
         return (dispatch) => {
-            dispatch(loginUserRequest());
             return fetch('http://localhost:3000/auth/getToken/', {
                 method: 'post',
                 credentials: 'include',
@@ -163,6 +132,50 @@ define([], function () {
                     dispatch(loginUserFailure(error));
                 })
         }
-    }
+    },
+
+    registerFail(response) {
+      return {
+        type: REGISTER_USER_FAILURE,
+        payload: response
+      }
+    },
+
+    /**
+     * Registers a user in the system
+     * @param  {string}   email    The email of the user
+     * @param  {string}   username The username of the user
+     * @param  {string}   password The password of the user
+     */
+    register (email, username, password) {
+        return (dispatch) => {
+          dispatch({ type: SENDING_REQUEST })
+
+          $.ajax({
+            type: 'POST',
+            url: window._medica.api + '/auth/signup', 
+            data: { email, username, password }
+          }).done(response => {
+              console.log('register success!!');
+              dispatch({ type: LOGIN_USER_SUCCESS, payload: response.data })
+          }).fail((xhr, response) => {
+              console.log('register fail!!', xhr ,response);
+              dispatch({ type: REGISTER_USER_FAILURE, payload: xhr.responseJSON })
+          })
+        }
+    },
+
+    registerSuccess(data) {
+      localStorage.setItem(TOKEN_KEY, data.token);
+      localStorage.setItem('user_info', data.user);
+      return {
+        type: LOGIN_USER_SUCCESS,
+        payload: {
+          token: data.token
+        }
+      }
+    },
+
+
   }
 })
