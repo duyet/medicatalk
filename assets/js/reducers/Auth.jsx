@@ -1,4 +1,4 @@
-define (['jquery', 'redux', 'jwt-decode', '../Actions'], 
+define (['jquery', 'redux', 'jwt-decode', 'Actions'], 
 function ($, Redux, jwtDecode, Actions) {
   const { SENDING_REQUEST } = Actions
   const { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, LOGOUT_SUCCESS } = Actions

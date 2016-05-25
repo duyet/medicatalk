@@ -1,4 +1,4 @@
-define (['redux', '../Actions'], 
+define (['redux', 'Actions'], 
 function (Redux, Actions) {
     const { REDIRECT_TO } = Actions
     const initialState = {

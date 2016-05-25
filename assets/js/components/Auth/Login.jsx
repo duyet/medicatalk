@@ -1,4 +1,4 @@
-define(['react', 'react-router', './AuthMessage', '../../Actions', '../../utils/ErrorParser'], 
+define(['react', 'react-router', './AuthMessage', 'Actions', '../../utils/ErrorParser'], 
 function(React, ReactRouter, AuthMessage, Actions, ErrorParser) {
   const { PropTypes, Component } = React
   const { History } = ReactRouter
@@ -14,7 +14,8 @@ function(React, ReactRouter, AuthMessage, Actions, ErrorParser) {
         email: '',
         password: '',
         remember: true,
-        redirectTo: redirectRoute
+        redirectTo: redirectRoute,
+        isSending: false
       }
     }
 
@@ -31,8 +32,10 @@ function(React, ReactRouter, AuthMessage, Actions, ErrorParser) {
         return;
       }
 
+      this.setState({ isSending: true })
       this.props.actions.doLogin(this.state.email, this.state.password, this.state.redirectTo, (response) => {
-        this.setState({ message: null });
+        this.setState({ message: null })
+        this.setState({ isSending: false })
         
         if (response.type == 'LOGIN_USER_SUCCESS') {
           
@@ -81,8 +84,10 @@ function(React, ReactRouter, AuthMessage, Actions, ErrorParser) {
             <button  
               className='btn btn-lg btn-primary btn-block' 
               type='submit'
-              disabled={this.props.isAuthenticating}
-              onClick={this.submitForm.bind(this)}>Sign in</button>
+              disabled={this.state.isSending}
+              onClick={this.submitForm.bind(this)}>
+                {!this.state.isSending ? 'Sign in ' : 'Request ...'}
+            </button>
           </form>
       );
     }

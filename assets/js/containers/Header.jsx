@@ -1,4 +1,4 @@
-define(['redux', 'react-redux', '../Actions', '../components/Header'], 
+define(['redux', 'react-redux', 'Actions', '../components/Header'], 
 function(Redux, ReactRedux, Actions, Header) {
   
   const { connect } = ReactRedux

@@ -1,4 +1,4 @@
-define(['react', 'react-router', '../../Actions'], 
+define(['react', 'react-router', 'Actions'], 
 function(React, ReactRouter, Actions) {
   const { Component } = React
   const { Link } = ReactRouter

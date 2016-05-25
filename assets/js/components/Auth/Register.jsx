@@ -1,4 +1,4 @@
-define(['react', 'react-router', '../../Actions', './AuthMessage', '../../utils/ErrorParser'], 
+define(['react', 'react-router', 'Actions', './AuthMessage', '../../utils/ErrorParser'], 
 function(React, ReactRouter, Actions, AuthMessage, ErrorParser) {
   const { PropTypes, Component } = React
   const { History } = ReactRouter
@@ -9,7 +9,7 @@ function(React, ReactRouter, Actions, AuthMessage, ErrorParser) {
       super(props)
       
       // this.onChange = this.onChange.bind(this)
-      const redirectRoute = this.props.location.query.next || '/auth/register';
+      const redirectRoute = this.props.location.query.next || '/';
       this.state = {
         message: '',
         username: '',
@@ -45,8 +45,10 @@ function(React, ReactRouter, Actions, AuthMessage, ErrorParser) {
         return;
       }
 
-      this.props.actions.doRegister(this.state.email, this.state.username, this.state.password, (response) => {
+      this.setState({ isSending: true })
+      this.props.actions.doRegister(this.state.email, this.state.username, this.state.password, this.state.redirectTo, (response) => {
         this.setState({ message: null });
+        this.setState({ isSending: false })
         
         if (response.type == 'LOGIN_USER_SUCCESS') {
           
@@ -107,8 +109,10 @@ function(React, ReactRouter, Actions, AuthMessage, ErrorParser) {
             <button  
               className='btn btn-lg btn-primary btn-block' 
               type='submit'
-              disabled={this.props.isAuthenticating}
-              onClick={this.submitForm.bind(this)}>Register</button>
+              disabled={this.props.isSending}
+              onClick={this.submitForm.bind(this)}>
+              {!this.state.isSending ? 'Register' : 'Request ...'}
+            </button>
           </form>
       );
     }

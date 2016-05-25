@@ -6,5 +6,9 @@
  */
 
 module.exports = {
-
+	me: function (req, res) {
+		return res.ok({
+			
+		})
+	}
 };

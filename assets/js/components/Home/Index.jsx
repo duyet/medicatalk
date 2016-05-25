@@ -1,5 +1,5 @@
-define(['react', '../../Rest', '../../Store', './Banner', './BlockQuotes', './Sitemap'], 
-function(React, Rest, Store, Banner, BlockQuotes, Sitemap) {
+define(['react', '../../Store', './Banner', './BlockQuotes', './Sitemap'], 
+function(React, Store, Banner, BlockQuotes, Sitemap) {
   const { PropTypes, Component } = React
 
   class Home extends Component {

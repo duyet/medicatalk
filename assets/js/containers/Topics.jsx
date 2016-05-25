@@ -1,4 +1,4 @@
-define(['react-redux', '../Actions', '../components/Topics/Index'], function(ReactRedux, Actions, Topics) {
+define(['react-redux', 'Actions', '../components/Topics/Index'], function(ReactRedux, Actions, Topics) {
   const { connect } = ReactRedux
   const { setVisibilityFilter } = Actions
 

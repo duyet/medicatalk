@@ -1,339 +1,532 @@
+// Color variables (appears count calculates by raw css)
+@color0: #ee3b24; // Appears 77 times
+@color1: #ffffff; // Appears 26 times
+@color2: #000000; // Appears 7 times
+@color3: #222222; // Appears 7 times
+@color4: #f6f6f6; // Appears 4 times
+@color5: #444444; // Appears 3 times
+@color6: #cccccc; // Appears 3 times
+@color7: #f8f8f8; // Appears 2 times
+@color8: #434343; // Appears 2 times
+@color9: #393a3b; // Appears 2 times
+@color10: #333333; // Appears 2 times
 
-/* Color styles
-================================================== */
-.btn-main:hover{
-    background:#EE3B24;
-    border:1px solid#EE3B24;
-    color: #fff;
-}
-.btn-main.featured{
-    background: #EE3B24;
-    border:1px solid#EE3B24;
-    color: #fff;
-}
-.btn-main.featured:hover{
-    background: #333;
-    color:#fff;
-    border:1px solid#333;
-}
-/*Menu style
-==================================*/
-#section_header .haeder-fixed,#section_header{
-    background: #fff;
-}
-.divider{
-    background: #EE3B24;
+.btn-main {
+    &:hover {
+        background:@color0;
+        border:1px solid@color0;
+        color: @color1;
     }
-.navbar-brand:hover{
-    color:#EE3B24;
 }
-ul.navbar-nav > .active > a{
-    color:#EE3B24!important;
+.btn-main.featured {
+    background: @color0;
+    border:1px solid@color0;
+    color: @color1;
+    &:hover {
+        background: @color10;
+        border:1px solid@color10;
+        color:@color1;
+    }
 }
-ul.navbar-nav > li > a:hover{
-    color:#EE3B24!important;
+#section_header {
+    background: @color1;
+    .haeder-fixed {
+        background: @color1;
+    }
 }
-ul.navbar-nav > .active > a,ul.navbar-nav > li > a:hover,.carousel-caption h4{
-    color:#EE3B24!important;
+.divider {
+    background: @color0;
 }
-.navbar-toggle .icon-bar{
-    background:#000; 
+.navbar-brand {
+    &:hover {
+        color:@color0;
+    }
+    span {
+        color:@color2;
+    }
+}
+ul.navbar-nav>.active>a {
+    color:@color0!important;
+    color:@color0!important;
+    &:hover {
+        color:@color2 !important;
+    }
+}
+ul.navbar-nav>li>a {
+    &:hover {
+        color:@color0!important;
+        color:@color0!important;
+    }
+}
+.carousel-caption {
+    h4 {
+        color:@color0!important;
+    }
+    h3 {
+        color:@color1!important;
+    }
 }
 .navbar-toggle {
-    background: #ccc;
+    background: @color6;
+    .icon-bar {
+        background:@color2;
+    }
 }
-
-.navbar-brand span{
-    color:#000;
+ul.navbar-nav {
+    a {
+        color: #3a3a3a;
+    }
 }
-ul.navbar-nav a {
-    color: #3a3a3a;
+.dropdown-menu>li>a {
+    &:hover {
+        color: @color0 !important;
+    }
+    &:focus {
+        color: @color0 !important;
+    }
 }
-ul.navbar-nav > .active> a:hover{
-    color:#000 !important;
+.dropdown-menu>li.active>a {
+    color: @color0 !important;
 }
-.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus, 
-.dropdown-menu>li.active>a{
-    color: #EE3B24 !important;
+.line {
+    background: @color0;
 }
-/*slider*/
-.carousel-caption h3{
-    color:#fff!important;
+.btn-featured {
+    background: @color0;
+    color:@color1;
+    &:hover {
+        background: @color1;
+        color: @color3;
+    }
 }
-
-.line{
-    background: #EE3B24;
+.slides-control {
+    .carousel-control {
+        i {
+            border:1px solid@color1;
+            color: @color1;
+            &:hover {
+                background: @color0;
+                border:1px solid@color0;
+            }
+        }
+    }
+    .carousel-indicators {
+        .active {
+            background-color:@color0;
+        }
+    }
 }
-
-.btn-featured{
-    background: #EE3B24;
-     color:#fff;
+.carousel-indicators {
+    .active {
+        background-color:@color0;
+    }
+    li {
+        &:hover {
+            background-color:@color0;
+        }
+    }
 }
-.btn-featured:hover{
-    color: #222;
-    background: #fff;
+.feature_content {
+    i {
+        color:@color2!important;
+    }
+    h5 {
+        color:@color2!important;
+    }
+    a {
+        border:1px solid@color0;
+        color:@color2!important;
+        &:hover {
+            background: @color0;
+            color:@color1;
+        }
+    }
+    &:hover {
+        i {
+            color: @color0!important;
+        }
+        h5 {
+            color: @color0!important;
+        }
+    }
 }
-.slides-control .carousel-control i{
-    border:1px solid#fff;
-    color: #fff;
+#isotope-filter {
+    a.active {
+        background: @color0;
+        color:@color1!important;
+    }
+    a {
+        background: @color2;
+        color:#959595;
+        &:hover {
+            background: @color0;
+            color:@color1!important;
+        }
+        &:focus {
+            background: @color0;
+            color:@color1!important;
+        }
+    }
 }
-.slides-control  .carousel-control i:hover{
-    background: #EE3B24;
-    border:1px solid#EE3B24;
+.feature-icon {
+    color: @color0;
 }
-.carousel-indicators .active, .carousel-indicators li:hover,.slides-control  .carousel-indicators .active{
-    background-color:#EE3B24;
+.dark-bg {
+    background:@color9;
 }
-
-
-/*service area
-=========================*/
-.feature_content i,.feature_content h5,.feature_content a{
-    color:#000!important;
+.dark_bg {
+    background:@color9;
+    ul {
+        li.price_button {
+            background: @color4;
+        }
+        li.price {
+            color: @color8;
+        }
+    }
 }
-.feature_content a:hover{
-    color:#fff;
+.grey_bg ul li.plan, .grey_bg .plan_wraper,.grey_bg ul li.price,.grey_bg ul li.price_button .btn-default {
+    background: @color0!important;
 }
-.feature_content:hover i,.feature_content:hover  h5{
-      color: #EE3B24!important;
-}
-#isotope-filter a.active,#isotope-filter a:hover,#isotope-filter a:focus{
-    background: #EE3B24;
-}
-.feature-icon{
-    color: #EE3B24;
-}
-#isotope-filter a{
-background: #000;
-}
-
-/*Pricing
-=====================================*/
-.dark-bg{
-    background:#393A3B;
-}
-.dark_bg{
-    background:#393A3B;
-}
-.grey_bg ul li.plan, .grey_bg .plan_wraper,.grey_bg ul li.price,.grey_bg ul li.price_button .btn-default{
-   background: #EE3B24!important;
-}
-
-.dark_bg,.single_table ul li.plan,.dark_bg ul li.plan,.dark_bg ul li.price_button .btn-default,.single_table .plan_wraper
-,.dark_bg .plan_wraper
- {
-     background: #434343;
+.dark_bg,.single_table ul li.plan,.dark_bg ul li.plan,.dark_bg ul li.price_button .btn-default,.single_table .plan_wraper ,.dark_bg .plan_wraper  {
+    background: @color8;
 }
 .grey_bg {
-    background: #EE3B24;
+    background: @color0;
 }
-.single_table ul li.price {
-    background: #F8F8F8!important;
+.single_table {
+    ul {
+        li.price {
+            background: @color7!important;
+        }
+        li.price_button {
+            background: @color4;
+            .btn-default {
+                background: @color5;
+            }
+        }
+    }
 }
-.single_table ul li.price_button,.dark_bg ul li.price_button  {
-    background: #F6F6F6;
+#pricing_table {
+    .feature_title {
+        color: @color1!important;
+    }
+    .feature_sub {
+        color: @color1!important;
+    }
 }
-.single_table ul li.price_button .btn-default {
-    background: #444444;
+.single-portfolio {
+    figcaption {
+        background: none repeat scroll 0% 0% @color0;
+        .description {
+            background: none repeat scroll 0% 0% @color0;
+            color: @color1!important;
+        }
+        h5 {
+            color: @color1!important;
+        }
+    }
 }
-.dark_bg ul li.price {
-    color: #434343;
+figcaption {
+    .links {
+        a {
+            &:hover {
+                background: @color3;
+                color: @color0;
+            }
+        }
+    }
 }
-
-#pricing_table .feature_title,#pricing_table .feature_sub{
-    color: #fff!important;
+.feature-content {
+    color: @color3;
 }
-
-/*portfolio
-=================*/
-.single-portfolio figcaption,.single-portfolio figcaption .description{
-    background: none repeat scroll 0% 0% #EE3B24;
+.portfolio-desc {
+    h4 {
+        &:after {
+            background: @color0;
+        }
+    }
 }
-.single-portfolio figcaption .description,.single-portfolio figcaption h5{
-      color: #fff!important;
+.right-sidebar {
+    h4 {
+        &:after {
+            background: @color0;
+        }
+    }
 }
-figcaption .links a:hover{
-    background: #222;
-    color: #EE3B24;
+.related {
+    h3 {
+        &:after {
+            background:@color0;
+        }
+    }
 }
-#isotope-filter a{
-    color:#959595;
-}
-#isotope-filter a.active,#isotope-filter a:hover,#isotope-filter a:focus{
-    color:#fff!important;
-}
-.feature-content{
-    color: #222;
-}
-
-
-/*single portfolio
-------------------*/
-.portfolio-desc h4:after{
-    background: #EE3B24;
-}
-.right-sidebar h4:after{
-    background: #EE3B24;
-}
-.related h3:after{
-    background:#EE3B24;
-}
-
-
-/*team
-=================*/
-
 #team {
     background: #FAFAFA;
+    .owl-theme {
+        .owl-controls {
+            .owl-buttons {
+                .owl-prev {
+                    background: @color0;
+                    color: @color1;
+                    &:hover {
+                        background: @color6;
+                        color: @color3;
+                    }
+                }
+                .owl-next {
+                    background: @color0;
+                    color: @color1;
+                    &:hover {
+                        background: @color6;
+                        color: @color3;
+                    }
+                }
+            }
+        }
+    }
 }
 .single-member {
-    background: #fff;
+    background: @color1;
+    h5 {
+        color: #1F1F1F;
+    }
 }
-
-.item .single-member h3 {
-    color: #EE3B24!important;
+.item {
+    .single-member {
+        h3 {
+            color: @color0!important;
+        }
+    }
 }
-.single-member h5 {
-    color: #1F1F1F;
+.line2 {
+    background: @color0;
 }
-.line2{
-    background: #EE3B24;
-}
-.overlay-effect{
+.overlay-effect {
     background: rgba(209,66,51,0.95);
 }
- #team .owl-theme .owl-controls .owl-buttons .owl-prev
-,#team .owl-theme .owl-controls .owl-buttons .owl-next{
-    background: #EE3B24;
-    color: #fff;
+.testimonial-slide {
+    .testimonial-text {
+        &:before {
+            color: @color0;
+        }
+        &:after {
+            color: @color0;
+        }
+    }
+    .testimonial-content {
+        h3.name {
+            color: @color0!important;
+        }
+    }
 }
- #team .owl-theme .owl-controls .owl-buttons .owl-prev:hover
-,#team .owl-theme .owl-controls .owl-buttons .owl-next:hover {
-   background: #ccc;
-   color: #222;
+.customNavigation {
+    .fa-chevron-left {
+        background: @color0;
+        color: @color1!important;
+        color: @color3;
+        &:hover {
+            background: @color5;
+            color: @color1;
+        }
+    }
+    .fa-chevron-right {
+        background: @color0;
+        color: @color1!important;
+        color: @color3;
+        &:hover {
+            background: @color5;
+            color: @color1;
+        }
+    }
 }
-
-
-/*testimonial
-=========================*/
-.testimonial-slide .testimonial-text:before,.testimonial-slide .testimonial-text:after {
-    color: #EE3B24;
+.client_logo {
+    img {
+        &:hover {
+            border: 1px solid @color0;
+        }
+    }
 }
-
-.testimonial-slide .testimonial-content h3.name {
-    color: #EE3B24!important;
+.sepTem {
+    background: none repeat scroll 0% 0% @color0;
 }
-.customNavigation .fa-chevron-left, .customNavigation .fa-chevron-right{ 
-    background: #EE3B24;
-    color: #fff!important;
+.menu_head {
+    &:after {
+        background: none repeat scroll 0% 0% @color0;
+    }
+    &:before {
+        background: none repeat scroll 0% 0% @color0;
+    }
 }
-.customNavigation .fa-chevron-left:hover, .customNavigation .fa-chevron-right:hover{ 
-      background: #444;
-    color: #fff;
+.footer_menu_contact {
+    li {
+        i {
+            color:@color0;
+        }
+        span {
+            &:hover {
+                color:@color0;
+            }
+        }
+    }
 }
-.customNavigation .fa-chevron-left, .customNavigation .fa-chevron-right{ 
-    color: #222;
-}
-
-.client_logo img:hover{ 
-    border: 1px solid #EE3B24;
-}
-
-
-.sepTem{
-    background: none repeat scroll 0% 0% #EE3B24;
-}
-
-.menu_head:after,.menu_head:before{
-    background: none repeat scroll 0% 0% #EE3B24;
-}
-
-.footer_menu_contact li i,.footer_menu_contact li span:hover {
-    color:#EE3B24;
-}
-
 .footer_menu ul li a:hover,.footer_menu li a:before,.footer_menu_contact li span:hover,.footer_bottom p span  {
-    color: #EE3B24;
+    color: @color0;
 }
-.tags a:hover{
-    background:#EE3B24;
+.tags {
+    a {
+        &:hover {
+            background:@color0;
+        }
+    }
 }
-
-.feature_content a{
-    border:1px solid#EE3B24;
+.left_contact {
+    input[type=text] {
+        &:hover {
+            border: 1px solid@color0;
+        }
+    }
+    input {
+        &:hover {
+            background: @color4;
+            border:1px solid@color0;
+            color: @color0;
+        }
+    }
 }
-.feature_content a:hover{
-    background: #EE3B24;
+textarea {
+    &:hover {
+        border: 1px solid@color0;
+    }
 }
-
-/*contact area
-===============================================*/
-.left_contact input[type=text]{ }
-.left_contact input[type=text]:hover,
-textarea:hover {
-    border: 1px solid#EE3B24;
+.form-level {
+    input {
+        &:hover {
+            .form-level {
+                span {
+                    color: @color0!important;
+                }
+            }
+        }
+    }
 }
-
-.form-level input:hover .form-level  span{
-    color: #EE3B24!important;
+.right {
+    textarea {
+        &:hover {
+            background: @color4;
+            border:1px solid@color0;
+            color: @color0;
+        }
+    }
 }
-.left_contact input:hover, .right textarea:hover{
-    border:1px solid#EE3B24;
-    background: #F6F6F6;
-    color: #EE3B24;
+.social-contact {
+    li {
+        i {
+            &:hover {
+                border:1px solid @color0;
+                color: @color0;
+            }
+        }
+    }
 }
-.social-contact li i:hover{
-    color: #EE3B24;
-    border:1px solid #EE3B24;
+#blog {
+    background: @color7;
 }
-/*blog
-=====================*/
-#blog{
-    background: #F8F8F8;
+.post-date {
+    background:@color0;
 }
-.post-date{
-    background:#EE3B24;
+.owl-theme {
+    .owl-controls {
+        .owl-page {
+            span {
+                background: none repeat scroll 0% 0% @color0;
+            }
+        }
+    }
 }
-.owl-theme .owl-controls .owl-page span {
-    background: none repeat scroll 0% 0% #EE3B24;
+.blog-desc {
+    .post-meta-links {
+        li {
+            a {
+                color: @color0;
+            }
+        }
+    }
 }
-
-.blog-desc .post-meta-links li a{
-    color: #EE3B24;
+.tags1 {
+    a {
+        background: @color0;
+        padding: 6px 15px;
+    }
 }
-.tags1 a{
-    padding: 6px 15px;
-    background: #EE3B24;
+.about-auther {
+    .well {
+        border-top: 5px solid@color0!important;
+    }
 }
-.about-auther .well{
-    border-top: 5px solid#EE3B24!important;
+.blog-tab {
+    .nav-tabs {
+        li.active {
+            a {
+                border-top: 5px solid@color0!important;
+            }
+        }
+    }
+    .tab-content {
+        .single-tweet {
+            i {
+                color: @color0;
+            }
+            p {
+                a {
+                    color: @color0;
+                }
+            }
+        }
+    }
 }
-.blog-tab .nav-tabs li.active a{
-    border-top: 5px solid#EE3B24!important;
+.comments {
+    .media-body {
+        a {
+            &:hover {
+                background: @color0;
+            }
+        }
+    }
 }
-
-.blog-tab .tab-content .single-tweet i{
-    color: #EE3B24;
+.blog-form {
+    h4 {
+        span {
+            color: @color0;
+        }
+    }
+    .form-control {
+        &:hover {
+            border: 1px solid@color0;
+        }
+    }
 }
-.blog-tab .tab-content .single-tweet p a{
-    color: #EE3B24;
+.blog-catagory {
+    ul {
+        li {
+            a {
+                &:hover {
+                    color: @color0;
+                    span {
+                        background: @color0;
+                        color: @color1;
+                    }
+                }
+            }
+        }
+    }
 }
-.comments .media-body a:hover{
-    background: #EE3B24;
-}
-.blog-form h4 span{
-    color: #EE3B24;
-}
-.blog-catagory ul li a:hover{
-    color: #EE3B24;
-}
-.blog-catagory ul li a:hover span{
-    color: #fff;
-    background: #EE3B24;
-}
-.blog-form .form-control:hover{
-    border: 1px solid#EE3B24;
-}
-.rel-post .caption h4:hover{
-    color: #EE3B24;
+.rel-post {
+    .caption {
+        h4 {
+            &:hover {
+                color: @color0;
+            }
+        }
+    }
 }

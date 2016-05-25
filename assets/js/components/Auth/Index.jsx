@@ -1,5 +1,5 @@
-define(['react', 'react-router', '../../Rest', '../../Store', './Login', './Register', './Logout', './LogoutSuccess'], 
-function(React, ReactRouter, Rest, Store, Login, Register, Logout, LogoutSuccess) {
+define(['react', 'react-router', '../../Store', './Login', './Register', './Logout', './LogoutSuccess'], 
+function(React, ReactRouter, Store, Login, Register, Logout, LogoutSuccess) {
   const { PropTypes, Component } = React
   const { Router, Route, browserHistory, Link } = ReactRouter
 

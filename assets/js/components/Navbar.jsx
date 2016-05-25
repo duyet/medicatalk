@@ -18,7 +18,7 @@ define(['react', 'react-redux', 'react-router'], function(React, ReactRedux, Rea
             <li><Link to='/help'>Help</Link> </li>
             <li><Link to='/about'>About </Link> </li>
             { this.props.Auth.isAuthenticated == true
-              ? <li><Link to='/me'>{this.props.Auth.user.username}</Link> <Link to='/auth/logout'>(Logout)</Link></li>
+              ? <li><Link to='/profile'>{this.props.Auth.user.username}</Link> <Link to='/auth/logout'>(Logout)</Link></li>
               : <li><Link to='/auth'>Login / Register</Link> </li>
             }
           </ul>

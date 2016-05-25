@@ -1,4 +1,4 @@
-define(['react-redux', '../Actions', '../components/Home/Index'], function(ReactRedux, Actions, Home) {
+define(['react-redux', 'Actions', '../components/Home/Index'], function(ReactRedux, Actions, Home) {
   const { connect } = ReactRedux
   const { setVisibilityFilter } = Actions
 

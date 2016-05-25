@@ -16,7 +16,9 @@ requirejs.config({
       'jwt-decode': '../lib/jwt-decode/build/jwt-decode.min',
 
       'app': '/js',
-      'lib': '../lib'
+      'lib': '../lib',
+
+      'Actions': './actions/Index',
     },
 
     shim: {
@@ -34,7 +36,7 @@ requirejs.config({
     baseUrl: '/js'
 })
 
-require(['react', 'reactdom', 'react-redux', 'react-router', './Store', './Actions', './components/App'],
+require(['react', 'reactdom', 'react-redux', 'react-router', './Store', 'Actions', './components/App'],
   function (React, ReactDOM, ReactRedux, ReactRouter, Store, Actions, App) {
     const { Provider } = ReactRedux
     const { intialAuthStatus } = Actions

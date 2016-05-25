@@ -1,6 +1,6 @@
 // See: http://redux.js.org/docs/basics/Reducers.html
 
-define(['redux', '../Actions'], function (Redux, Actions) {
+define(['redux', 'Actions'], function (Redux, Actions) {
 	const { ADD_TODO, COMPLETE_TODO, TOGGLE_TODO, VisibilityFilters } = Actions
 
 	function todos (state, action) {

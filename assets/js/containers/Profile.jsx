@@ -1,5 +1,5 @@
-define(['redux', 'react-redux', 'Actions', '../components/Auth/Index'], 
-function(Redux, ReactRedux, Actions, Auth) {
+define(['redux', 'react-redux', 'Actions', '../components/Profile/Index'], 
+function(Redux, ReactRedux, Actions, Profile) {
   const { connect } = ReactRedux
   const { bindActionCreators } = Redux
 
@@ -10,14 +10,11 @@ function(Redux, ReactRedux, Actions, Auth) {
   const mapDispatchToProps = (dispatch, ownProps) => {
     return {
       actions : bindActionCreators(Actions, dispatch),
-      doRegister:  (email, username = '', password, cb = () => {}) => {
-        dispatch(Actions.doRegister(email, username, password, cb))
-      },
     }
   }
 
   return connect(
     mapStateToProps,
     mapDispatchToProps
-  )(Auth)
+  )(Profile)
 })
