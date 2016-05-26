@@ -9,15 +9,13 @@ define(['react', 'react-router', './Navbar'], function (React, ReactRouter, Navb
         <header id='section_header' className='navbar-fixed-top main-nav' role='banner'>
           <div className='container'>
 
-            <div className='navbar-header '>
-              <button type='button' className='navbar-toggle' data-toggle='collapse' data-target='#bs-example-navbar-collapse-1'>
+            <div className='navbar-header'>
+              <button type='button' className='navbar-toggle' data-toggle='collapse' data-target='#medica-navbar'>
                 <span className='sr-only'>Toggle navigation</span>
-                <span className='icon-bar' />
-                <span className='icon-bar' />
-                <span className='icon-bar' />
+                <span className='lnr lnr-menu'></span>
               </button>
               <Link className='navbar-brand' to='/'>
-                {this.props.logoText}
+                <span className='lnr lnr-heart-pulse'></span>
               </Link>
             </div>
             <Navbar {...this.props} />

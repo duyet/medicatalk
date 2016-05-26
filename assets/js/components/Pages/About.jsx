@@ -13,7 +13,15 @@ define(['react', 'react-router'], function (React, ReactRouter) {
 				<section>
 					<h1>Medica Talk</h1>
 					<center>
-						<img src='/images/medical.jpg' className='img-responsive' />
+						<div style={{
+							background: 'url(/images/medical.jpg)',
+							backgroundPosition: 'center',
+							backgroundRepeat: 'no-repeat',
+							backgroundSize: 'contain', 
+							display:'block', 
+							width: '100%', 
+							height: 250
+						}} />
 					</center>
 				</section>
 

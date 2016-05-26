@@ -1,6 +1,8 @@
-define(['react', 'react-router'], function (React, ReactRouter) {
+define(['react', 'react-router', 'Immutable', 'draft'], function (React, ReactRouter, Immutable, Draft) {
 	const { Component } = React
 	const { Link } = ReactRouter
+	
+	console.log(Draft)
 	// const { Editor, EditorState } = Draft
 
 	class Head extends Component {

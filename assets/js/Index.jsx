@@ -10,7 +10,7 @@ requirejs.config({
       'reactdom': '../lib/react/react-dom',
       'history': '../lib/history/index',
       'draft': '../lib/Draft/index',
-      'immutable': '../lib/immutable/index',
+      'Immutable': '../lib/immutable/dist/immutable',
       'jquery': '../lib/jquery/dist/jquery',
       'jquery.timeago': '../lib/jquery-timeago/jquery.timeago',
       'showdown': '../lib/showdown/compressed/Showdown',
@@ -26,7 +26,7 @@ requirejs.config({
     shim: {
       'react-redux': ['react'],
       'react-router': ['react'],
-      'draft': ['immutable'],
+      'draft': ['Immutable'],
       'Immutable': { exports: 'Immutable' },
       'reactdom': ['react'],
       'jquery.timeago': ['jquery'],
