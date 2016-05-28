@@ -5,8 +5,13 @@ define(['react', 'react-router'], function (React, ReactRouter) {
 	class Head extends Component {
 		render() {
 			return (
-			    <div className='col-md-12 topics-head text-right'>
-					<Link to='/topics/new' className='btn btn-primary'><span className='lnr lnr-pencil'></span> Create</Link>
+			    <div className='col-md-12 topics-head'>
+					<div class="page-header">
+						<h1>Topics</h1>
+					</div>
+					
+					<br />
+					<Link to='/topics/new' className='btn btn-primary btn-small'><span className='lnr lnr-pencil'></span> Create</Link>
 				</div>
 			)
 		}
@@ -16,15 +21,7 @@ define(['react', 'react-router'], function (React, ReactRouter) {
 		render() {
 			return (
 				<div className='row'>
-				<div className="col-sm-6 col-md-4">
-					<div className="thumbnail">
-						<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDI0MiAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzEwMCV4MjAwCkNyZWF0ZWQgd2l0aCBIb2xkZXIuanMgMi42LjAuCkxlYXJuIG1vcmUgYXQgaHR0cDovL2hvbGRlcmpzLmNvbQooYykgMjAxMi0yMDE1IEl2YW4gTWFsb3BpbnNreSAtIGh0dHA6Ly9pbXNreS5jbwotLT48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjwhW0NEQVRBWyNob2xkZXJfMTU0ZTk2N2JhNjIgdGV4dCB7IGZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMnB0IH0gXV0+PC9zdHlsZT48L2RlZnM+PGcgaWQ9ImhvbGRlcl8xNTRlOTY3YmE2MiI+PHJlY3Qgd2lkdGg9IjI0MiIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSI4OS44NTkzNzUiIHk9IjEwNS4xIj4yNDJ4MjAwPC90ZXh0PjwvZz48L2c+PC9zdmc+" alt="..." />
-						<div className="caption">
-							<h5>Thumbnail label</h5>
-							<p>...</p>
-						</div>
-					</div>
-				</div>
+				
 				</div>
 			)
 		}
@@ -38,7 +35,6 @@ define(['react', 'react-router'], function (React, ReactRouter) {
 		render() {
 		  return (
 			<div className='row'>
-				<h1>Topics</h1>
 				<Head {...this.props} />
 				<Posts {...this.props} />
 			</div>

@@ -1,5 +1,5 @@
-define(['react', 'react-router', './Profile'], 
-function(React, ReactRouter, Profile) {
+define(['react', 'react-router', './Profile', './Preferences', './Update', './Verify'], 
+function(React, ReactRouter, Profile, Preferences, Update, Verify) {
   const { PropTypes, Component } = React
   const { Router, Route, browserHistory, Link } = ReactRouter
 
@@ -18,8 +18,9 @@ function(React, ReactRouter, Profile) {
 
           <Router>
             <Route path='/profile' component={(props, state) => <Profile {...this.props} />}></Route>
-            <Route path='/profile/password' component={Profile}></Route>
-            <Route path='/profile/verify' component={Profile}></Route>
+            <Route path='/profile/preferences' component={(props, state) => <Preferences {...this.props} />}></Route>
+            <Route path='/profile/update' component={(props, state) => <Update {...this.props} />}></Route>
+            <Route path='/profile/verify' component={(props, state) => <Verify {...this.props} />}></Route>
             <Route path='/profile/edit' component={Profile}></Route>
           </Router>
           
