@@ -1,4 +1,4 @@
-define(['react', 'react-router', 'Immutable', 'draft'], function (React, ReactRouter, Immutable, Draft) {
+define(['react', 'react-router'], function (React, ReactRouter) {
 	const { Component } = React
 	const { Link } = ReactRouter
 	
