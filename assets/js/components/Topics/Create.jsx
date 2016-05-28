@@ -1,9 +1,6 @@
 define(['react', 'react-router'], function (React, ReactRouter) {
 	const { Component } = React
 	const { Link } = ReactRouter
-	
-	console.log(Draft)
-	// const { Editor, EditorState } = Draft
 
 	class Head extends Component {
 		render() {
