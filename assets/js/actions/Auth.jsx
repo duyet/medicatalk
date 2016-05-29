@@ -91,7 +91,11 @@ define([], function () {
 	        let user = localStorage.getItem(Const.USER)
 	        
 	        try {
-	          user = JSON.parse(user);
+				// Parse User from localStorage
+				user = JSON.parse(user)
+
+				// Setup Authorization token
+				$.ajaxSetup({headers: {'Authorization': 'JWT ' + token}})
 	        } catch (e) {
 	          console.error('Parse user from localStorage: ', e)
 	          user = {}
@@ -143,8 +147,10 @@ define([], function () {
 	          }).done(response => {
 	              // TODO: Call dispatch => loginUserSuccess()
 	              
-	              localStorage.setItem(Const.TOKEN, response.data.token);
-	              localStorage.setItem(Const.USER, JSON.stringify(response.data.user));
+	              localStorage.setItem(Const.TOKEN, response.data.token)
+	              localStorage.setItem(Const.USER, JSON.stringify(response.data.user))
+	              $.ajaxSetup({headers: {'Authorization': 'JWT ' + response.data.token}})
+
 	              dispatch({ type: LOGIN_USER_SUCCESS, payload: response.data })
 	              dispatch({ type: 'REDIRECT_TO', to: redirectTo })
 	     

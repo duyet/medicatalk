@@ -112,13 +112,40 @@ var User = {
     },
     
     beforeUpdate: function(values, next) {
-        CipherService.hashPassword(values);
+        if (values.newPassword) {
+            values.password = values.newPassword;
+            CipherService.hashPassword(values);
+        }
+
         next();
     },
+
     beforeCreate: function(values, next) {
         CipherService.hashPassword(values);
         next();
-    }
+    },
+
+    changePassword: function(userid, oldPass, newPass, next) {
+        this.findOne(userid).exec(function (err, theUser) {
+            if (err) return next(new Error('User not found!'));
+
+            if (!CipherService.comparePassword(oldPass, theUser)) {
+                return next({ error: 'Old password was invalid!' });
+            }
+
+            theUser.newPassword = newPass;
+            theUser.save(next);
+        })
+    },
+
+    resetPassword: function(userid, newPass, next) {
+        this.findOne(userid).exec(function (err, theUser) {
+            if (err) return next(new Error('User not found!'));
+
+            theUser.newPassword = newPass;
+            theUser.save(next);
+        })
+    },
 };
 
 module.exports = User;

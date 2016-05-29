@@ -3,8 +3,8 @@
 // using store.dispatch().
 // See: http://redux.js.org/docs/basics/Actions.html
 
-define(['./actions/Auth', './actions/Global'], function (Auth, Global) {
+define(['./actions/Global', './actions/Auth', './actions/Profile' ], function (Global, Auth, Profile) {
 	return Object.assign(
-		{}, Auth, Global
+		{}, Global, Auth, Profile
 	)
 })

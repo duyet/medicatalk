@@ -27,7 +27,7 @@ var LOCAL_STRATEGY_CONFIG = {
  */
 var JWT_STRATEGY_CONFIG = {
     jwtFromRequest: ExtractJwt.fromAuthHeader(),
-    authScheme: 'MEDICA',
+    // authScheme: 'MEDICA',
     tokenBodyField: 'access_token',
     secretOrKey: SECRET,
     issuer: ISSUER,
