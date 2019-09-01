@@ -6,3 +6,9 @@ patch:
   'npm:qs:20140806-1':
     - grunt-contrib-watch > tiny-lr-fork > qs:
         patched: '2019-09-01T07:18:21.176Z'
+  'npm:debug:20170905':
+    - grunt-contrib-watch > tiny-lr > body-parser > debug:
+        patched: '2019-09-01T07:55:54.701Z'
+  'npm:ms:20170412':
+    - grunt-contrib-watch > tiny-lr > body-parser > debug > ms:
+        patched: '2019-09-01T07:55:54.701Z'
