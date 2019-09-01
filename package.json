@@ -20,7 +20,7 @@
     "grunt-contrib-jst": "0.6.0",
     "grunt-contrib-less": "2.0.0",
     "grunt-contrib-uglify": "4.0.1",
-    "grunt-contrib-watch": "0.5.3",
+    "grunt-contrib-watch": "0.6.1",
     "grunt-sails-linker": "1.0.4",
     "grunt-sync": "0.2.4",
     "include-all": "0.1.6",
