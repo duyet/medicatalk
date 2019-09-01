@@ -20,7 +20,7 @@
     "grunt-contrib-jst": "0.6.0",
     "grunt-contrib-less": "2.0.0",
     "grunt-contrib-uglify": "4.0.1",
-    "grunt-contrib-watch": "0.6.1",
+    "grunt-contrib-watch": "1.0.1",
     "grunt-sails-linker": "1.0.4",
     "grunt-sync": "0.8.1",
     "include-all": "0.1.6",
@@ -35,11 +35,14 @@
     "sails": "0.12.14",
     "sails-disk": "0.10.10",
     "sails-mongo": "0.12.3",
-    "validator": "5.7.0"
+    "validator": "5.7.0",
+    "snyk": "^1.222.1"
   },
   "scripts": {
     "debug": "node debug app.js",
-    "start": "node app.js"
+    "start": "node app.js",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "main": "app.js",
   "repository": {
@@ -50,5 +53,6 @@
   "license": "",
   "devDependencies": {
     "grunt-contrib-requirejs": "1.0.0"
-  }
+  },
+  "snyk": true
 }
