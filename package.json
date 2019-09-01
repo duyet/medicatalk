@@ -35,7 +35,7 @@
     "sails": "0.12.14",
     "sails-disk": "0.10.10",
     "sails-mongo": "0.12.3",
-    "validator": "5.7.0",
+    "validator": "11.1.0",
     "snyk": "^1.222.1"
   },
   "scripts": {
