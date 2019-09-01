@@ -11,7 +11,7 @@
     "bcryptjs": "2.4.3",
     "ejs": "2.6.2",
     "grunt": "1.0.4",
-    "grunt-babel": "6.0.0",
+    "grunt-babel": "8.0.0",
     "grunt-contrib-clean": "0.7.0",
     "grunt-contrib-coffee": "0.13.0",
     "grunt-contrib-concat": "0.5.1",
