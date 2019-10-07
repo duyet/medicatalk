@@ -6,3 +6,8 @@ patch:
   'npm:qs:20140806-1':
     - grunt-contrib-watch > tiny-lr-fork > qs:
         patched: '2019-09-01T07:18:21.176Z'
+  SNYK-JS-HTTPSPROXYAGENT-469131:
+    - snyk > proxy-agent > https-proxy-agent:
+        patched: '2019-10-07T06:41:51.232Z'
+    - snyk > proxy-agent > pac-proxy-agent > https-proxy-agent:
+        patched: '2019-10-07T06:41:51.232Z'

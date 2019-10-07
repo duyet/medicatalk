@@ -36,7 +36,7 @@
     "sails-disk": "0.10.10",
     "sails-mongo": "0.12.3",
     "validator": "5.7.0",
-    "snyk": "^1.222.1"
+    "snyk": "^1.231.0"
   },
   "scripts": {
     "debug": "node debug app.js",
