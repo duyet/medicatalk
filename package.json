@@ -23,7 +23,7 @@
     "grunt-contrib-watch": "1.1.0",
     "grunt-sails-linker": "1.0.4",
     "grunt-sync": "0.8.2",
-    "include-all": "0.1.6",
+    "include-all": "4.0.3",
     "jsonwebtoken": "6.2.0",
     "passport": "0.4.1",
     "passport-facebook-token": "3.3.0",
