@@ -16,7 +16,7 @@
     "grunt-contrib-coffee": "2.1.0",
     "grunt-contrib-concat": "1.0.1",
     "grunt-contrib-copy": "1.0.0",
-    "grunt-contrib-cssmin": "3.0.0",
+    "grunt-contrib-cssmin": "0.14.0",
     "grunt-contrib-jst": "1.0.0",
     "grunt-contrib-less": "2.0.0",
     "grunt-contrib-uglify": "4.0.1",
@@ -36,7 +36,7 @@
     "sails-disk": "0.10.10",
     "sails-mongo": "0.12.3",
     "validator": "5.7.0",
-    "snyk": "1.278.1"
+    "snyk": "^1.316.2"
   },
   "scripts": {
     "debug": "node debug app.js",
