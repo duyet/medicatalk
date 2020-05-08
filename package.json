@@ -33,7 +33,7 @@
     "passport-twitter": "1.0.4",
     "rc": "1.2.8",
     "sails": "1.2.4",
-    "sails-disk": "0.10.10",
+    "sails-disk": "1.1.2",
     "sails-mongo": "1.1.0",
     "validator": "5.7.0",
     "snyk": "1.316.2"
