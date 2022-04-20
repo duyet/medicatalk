@@ -9,7 +9,7 @@
     "babel-preset-react": "6.24.1",
     "bcrypt-nodejs": "0.0.3",
     "bcryptjs": "2.4.3",
-    "ejs": "3.1.6",
+    "ejs": "3.1.7",
     "grunt": "1.5.2",
     "grunt-babel": "8.0.0",
     "grunt-contrib-clean": "2.0.1",
